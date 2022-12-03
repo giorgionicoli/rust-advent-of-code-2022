@@ -1,6 +1,6 @@
-# Advent of Code 2022 - Rust edition
+# 🎄 Advent of Code 2022 - Rust edition 🎄
 
-Finally it's that time of the year again! 
+Finally it's that time of the year again! ❄️
 
 For the [Advent of Code 2022](https://adventofcode.com/), I decided to solve the challenges using Rust! I'm quite a beginner with Rust, so my solutions might disturb some more proficient developers, but oh well, we need to start somewhere :)
 
