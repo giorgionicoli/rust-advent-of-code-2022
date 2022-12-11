@@ -4,18 +4,12 @@ use std::collections::hash_map::RandomState;
 use std::collections::HashSet;
 use std::fs;
 
-struct Grouper<'a> {
-    items: std::str::SplitTerminator<'a, &'static str>,
+struct Grouper<'a, T: Sized + Iterator<Item = &'a str>> {
+    items: T,
 }
 
-impl<'a> Grouper<'a> {
-    fn from(input: &'a String) -> Grouper<'a> {
-        let items = input.split_terminator("\n");
-        Grouper { items }
-    }
-}
-
-impl<'a> Iterator for Grouper<'a> {
+impl<'a, T> Iterator for Grouper<'a, T>
+    where T: Sized + Iterator<Item = &'a str> {
     type Item = Group<'a>;
 
     fn next(&mut self) -> Option<Self::Item> {
@@ -66,7 +60,7 @@ fn main() {
 
     println!("The priority of all misplaced items is: [{priority}]");
 
-    let priority: u32 = Grouper::from(&rucksacks)
+    let priority: u32 = Grouper{ items: rucksacks.split_terminator("\n") }
         .map(|group| group.common_item())
         .map(priority_of_item)
         .sum();
